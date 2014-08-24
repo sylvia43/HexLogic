@@ -49,9 +49,7 @@ function onClick(e) {
   var yp = e.clientY - pp.y - ypo;
 
   var hx = 2/3 * xp / size;
-  var hy = Math.sqrt(3)/3 * yp / size;
-
-  console.log(hx + " " + hy);
+  var hy = Math.sqrt(3)/3 * yp / size + (Math.round(hx)%2)*Math.sqrt(3)/3;
 
   var h = map[Math.round(hx)][Math.floor(hy)];
   h.type++;
