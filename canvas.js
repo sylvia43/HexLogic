@@ -66,6 +66,12 @@ function updateHex(hex) {
       else
         hex.state = 0;
       break;
+    case 1:
+      if ((getNeighbor(hex, 1).state + getNeighbor(hex, 3).state + getNeighbor(hex, 5).state) % 2 == 1)
+        hex.state = 1;
+      else
+        hex.state = 0;
+      break;
   }
 }
 
