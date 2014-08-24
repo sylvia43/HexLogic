@@ -1,19 +1,24 @@
 var map = [
-  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
-  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
-  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
-  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
-  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
-  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
 ];
 
 var size = 30;
 
-var xo = 3;
-var yo = 3;
+var xo = -1;
+var yo = 1;
 
-var xpo = 300;
-var ypo = 300;
+var xpo = size;
+var ypo = size;
 
 canvas = document.getElementById('canvas')
 canvas.addEventListener('click', onClick, false);
@@ -23,7 +28,7 @@ repaint();
 
 function repaint() {
   for (var i=-xo; i<map.length-xo; i++) {
-    for (var j=-yo; j<map[i+yo].length-yo; j++) {
+    for (var j=-yo; j<map[i+xo].length-yo; j++) {
       drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + (i+j*2)*size*Math.sqrt(3)/2);
     }
   }
