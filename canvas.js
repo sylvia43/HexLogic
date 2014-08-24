@@ -9,7 +9,7 @@ for (var i=0; i<map.length; i++) {
 
 for (var i=0; i<xs; i++) {
   for (var j=0; j<ys; j++) {
-    map[i][j] = { state:0, type: 0};
+    map[i][j] = { state:0, type:0};
   }
 };
 
@@ -64,34 +64,50 @@ function drawHex(hex, xp, yp) {
       g.lineTo(x,y);
   }
   g.stroke();
+
+  if (hex.type == 0)
+    g.fillStyle='#AAAAAA';
+  else if (hex.state==0)
+    g.fillStyle='#FFFFFF';
+  else
+    g.fillStyle='#FFFF00';
+  g.fill();
+
+  g.beginPath();
   switch(hex.type) {
-    case 0:
-      g.fillStyle='#FFFFFF';
+    case 0: // Blank
       break;
-    case 1:
-      g.fillStyle='#FF0000';
+    case 1: // XOR
+      g.moveTo(xp - size/4, yp - size/4);
+      g.lineTo(xp + size/4, yp + size/4);
+      g.moveTo(xp - size/4, yp + size/4);
+      g.lineTo(xp + size/4, yp - size/4);
       break;
-    case 2:
-      g.fillStyle='#00FF00';
+    case 2: // OR
+      g.moveTo(xp - size/4, yp - size/4);
+      g.lineTo(xp + size/4, yp - size/4);
+      g.lineTo(xp + size/4, yp + size/4);
+      g.lineTo(xp - size/4, yp + size/4);
+      g.lineTo(xp - size/4, yp - size/4);
       break;
-    case 3:
-      g.fillStyle='#0000FF';
-      break;
-    default:
-      g.fillStyle='#000000';
+    case 3: // Power
+      g.moveTo(xp - size/4, yp);
+      g.lineTo(xp + size/4, yp);
+      g.moveTo(xp, yp + size/4);
+      g.lineTo(xp, yp - size/4);
       break;
   }
-  g.fill();
+  g.stroke();
 }
 
 function getPosition(e) {
-    var xp = 0;
-    var yp = 0;
-    
-    while (e) {
-        xp += (e.offsetLeft - e.scrollLeft + e.clientLeft);
-        yp += (e.offsetTop - e.scrollTop + e.clientTop);
-        e = e.offsetParent;
-    }
-    return { x: xp, y: yp };
+  var xp = 0;
+  var yp = 0;
+
+  while (e) {
+    xp += (e.offsetLeft - e.scrollLeft + e.clientLeft);
+    yp += (e.offsetTop - e.scrollTop + e.clientTop);
+    e = e.offsetParent;
+  }
+  return { x: xp, y: yp };
 }
