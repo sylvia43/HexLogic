@@ -44,9 +44,9 @@ function onClick(e) {
   var hr = (-1/3 * xp + Math.sqrt(3)/3 * -(-xp - (yp - (xp - (xp&1)) / 2))) / size + yo;
 
   var h = map[Math.round(hq)][Math.round(hr)];
-  h.state++;
-  if (h.state>3)
-    h.state=0;
+  h.type++;
+  if (h.type>3)
+    h.type=0;
 
   repaint();
 }
@@ -64,7 +64,7 @@ function drawHex(hex, xp, yp) {
       g.lineTo(x,y);
   }
   g.stroke();
-  switch(hex.state) {
+  switch(hex.type) {
     case 0:
       g.fillStyle='#FFFFFF';
       break;
