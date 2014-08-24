@@ -19,7 +19,7 @@ var xo = -1;
 var yo = 1;
 
 var xpo = size;
-var ypo = size;
+var ypo = size*6;
 
 canvas = document.getElementById('canvas')
 canvas.addEventListener('click', onClick, false);
@@ -30,7 +30,7 @@ repaint();
 function repaint() {
   for (var i=-xo; i<map.length-xo; i++) {
     for (var j=-yo; j<map[i+xo].length-yo; j++) {
-      drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + (i+j*2)*size*Math.sqrt(3)/2);
+      drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + j*2*size*Math.sqrt(3)/2 + (i%2==0?Math.sqrt(3)/2*size:0));
     }
   }
 }
@@ -40,8 +40,10 @@ function onClick(e) {
   var xp = e.clientX - pp.x - xpo;
   var yp = e.clientY - pp.y - ypo;
 
+  //-xp - (yp - (xp - (xp&1)) / 2)
+
   var hq = 2/3 * xp / size + xo;
-  var hr = (-1/3 * xp + 1/3*Math.sqrt(3) * yp) / size + yo;
+  var hr = (-1/3 * xp + Math.sqrt(3)/3 * -(-xp - (yp - (xp - (xp&1)) / 2))) / size + yo;
 
   console.log(hq + " " + hr);
 
