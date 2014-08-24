@@ -1,4 +1,8 @@
 HexLogic
 ========
 
-A clone of LogicHex using Javascript canvas. Try it out: http://anubiann00b.github.io/HexLogic/
+A clone of [LogicHex](https://mojang.com/notch/logichex/) by [Notch](https://mojang.com/notch/) (yes, the guy who made Minecraft) using Javascript canvas. Try it out: http://anubiann00b.github.io/HexLogic/
+
+Here's an AND gate:
+
+[insert image]
