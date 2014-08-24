@@ -30,11 +30,19 @@ repaint();
 function repaint() {
   for (var i=-xo; i<map.length-xo; i++) {
     for (var j=-yo; j<map[i+xo].length-yo; j++) {
+      updateHex(map[i+xo][j+yo]);
       drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + j*2*size*Math.sqrt(3)/2 + (i%2==0?Math.sqrt(3)/2*size:0));
     }
   }
 }
-  
+
+function updateHex(hex) {
+  if (hex.type == 3)
+    hex.state = 1;
+  if (hex.type == 0)
+    hex.state = 0;
+}
+ 
 function onClick(e) {
   var pp = getPosition(e.currentTarget);
   var xp = e.clientX - pp.x - xpo;
