@@ -14,9 +14,9 @@ canvas.addEventListener('click', onClick, false);
 var g = canvas.getContext('2d');
 g.fillStyle='#FF00A5';
 
-for (var i=0; i<map.length; i++) {
-  for (var j=0; j<map[i].length; j++) {
-    drawHex(map[i][j], i*size*3/2, (i+j*2)*size*Math.sqrt(3)/2);
+for (var i=-3; i<map.length-3; i++) {
+  for (var j=-3; j<map[i+3].length-3; j++) {
+    drawHex(map[i+3][j+3], 400 + i*size*3/2, 400 + (i+j*2)*size*Math.sqrt(3)/2);
   }
 }
 
@@ -24,8 +24,6 @@ function onClick(e) {
   var pp = getPosition(e.currentTarget);
   var xp = e.clientX - pp.x;
   var yp = e.clientY - pp.y;
-
-  console.log(xp + " " + yp);
 }
 
 function drawHex(hex, xp, yp) {
