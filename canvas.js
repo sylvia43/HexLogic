@@ -24,7 +24,7 @@ function onClick(e) {
 
 function drawHex(xp, yp, size) {
   var i;
-  for (i=0; i<6; i++) {
+  for (i=0; i<=6; i++) {
     var angle = 2 * Math.PI / 6 * i;
     x_i = xp + size * Math.cos(angle);
     y_i = yp + size * Math.sin(angle); 
