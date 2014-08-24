@@ -1,3 +1,12 @@
+var map = [
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+  [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
+];
+
 canvas = document.getElementById('canvas')
 canvas.addEventListener('click', onClick, false);
 var g = canvas.getContext('2d');
@@ -10,7 +19,21 @@ function onClick(e) {
 
   console.log(xp + " " + yp);
 
-  g.fillRect(xp,yp,10,10);
+  drawHex(xp, yp, 10);
+}
+
+function drawHex(xp, yp, size) {
+  var i;
+  for (i=0; i<6; i++) {
+    var angle = 2 * Math.PI / 6 * i;
+    x_i = xp + size * Math.cos(angle);
+    y_i = yp + size * Math.sin(angle); 
+    if (i == 0)
+      g.moveTo(x_i, y_i);
+    else
+      g.lineTo(x_i, y_i);
+  }
+  g.stroke();
 }
 
 function getPosition(e) {
