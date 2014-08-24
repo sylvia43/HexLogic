@@ -1,5 +1,5 @@
-var xs = 6;
-var ys = 6;
+var xs = 18;
+var ys = 10;
 
 var map = new Array(xs);
 
@@ -15,11 +15,11 @@ for (var i=0; i<xs; i++) {
 
 var size = 30;
 
-var xo = -1;
-var yo = 1;
+var xo = 0;
+var yo = 0;
 
 var xpo = size;
-var ypo = size*6;
+var ypo = size;
 
 canvas = document.getElementById('canvas')
 canvas.addEventListener('click', onClick, false);
