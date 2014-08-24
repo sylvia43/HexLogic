@@ -1,3 +1,11 @@
+
+var neighbors = [
+ [ [+1, +1], [+1,  0], [ 0, -1],
+   [-1,  0], [-1, +1], [ 0, +1] ],
+ [ [+1,  0], [+1, -1], [ 0, -1],
+   [-1, -1], [-1,  0], [ 0, +1] ]
+];
+
 var xs = 18;
 var ys = 10;
 
@@ -5,13 +13,13 @@ var map = new Array(xs);
 
 for (var i=0; i<map.length; i++) {
   map[i] = new Array(ys);
-};
+}
 
-for (var i=0; i<xs; i++) {
+for (i=0; i<xs; i++) {
   for (var j=0; j<ys; j++) {
-    map[i][j] = { state:0, type:0};
+    map[i][j] = { state:0, type:0, x:i, y:j};
   }
-};
+}
 
 var size = 30;
 
@@ -27,22 +35,54 @@ var g = canvas.getContext('2d');
 g.fillStyle='#FF00A5';
 repaint();
 
+window.setInterval(function() {
+  for (var i=0; i<map.length; i++) {
+    for (var j=0; j<map[i].length; j++) {
+      updateHex(map[i][j]);
+    }
+  }
+  repaint();
+}, 100);
+
 function repaint() {
   for (var i=-xo; i<map.length-xo; i++) {
     for (var j=-yo; j<map[i+xo].length-yo; j++) {
-      updateHex(map[i+xo][j+yo]);
       drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + j*size*Math.sqrt(3) + (i%2==0?Math.sqrt(3)/2*size:0));
     }
   }
 }
 
 function updateHex(hex) {
-  if (hex.type == 3)
-    hex.state = 1;
-  if (hex.type == 0)
-    hex.state = 0;
+  switch(hex.type) {
+    case 3:
+      hex.state = 1;
+      break;
+    case 0:
+      hex.state = 0;
+      break;
+    case 2:
+      if (getNeighbor(hex, 1).state == 1 || getNeighbor(hex, 3).state == 1 || getNeighbor(hex, 5).state == 1)
+        hex.state = 1;
+      else
+        hex.state = 0;
+      break;
+  }
 }
- 
+
+function getNeighbor(hex, d) {
+  var n = neighbors[(hex.y&1)][d];
+
+  var nx = hex.x+n[0];
+  var ny = hex.y+n[1]
+
+  if (nx<0 || nx>=xs || ny<0 || ny>=ys)
+    return { state:0, type:0, x:nx, y:ny};
+
+  var newHex = map[nx][ny];
+
+  return newHex;
+}
+
 function onClick(e) {
   var pp = getPosition(e.currentTarget);
   var xp = e.clientX - pp.x - xpo;
@@ -66,14 +106,14 @@ function drawHex(hex, xp, yp) {
     var angle = 2 * Math.PI / 6 * i;
     x = xp + size * Math.cos(angle);
     y = yp + size * Math.sin(angle); 
-    if (i == 0)
+    if (i === 0)
       g.moveTo(x,y);
     else
       g.lineTo(x,y);
   }
   g.stroke();
 
-  if (hex.type == 0)
+  if (hex.type === 0)
     g.fillStyle='#AAAAAA';
   else if (hex.state==0)
     g.fillStyle='#FFFFFF';
