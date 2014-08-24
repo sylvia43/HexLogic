@@ -5,4 +5,4 @@ A clone of [LogicHex](https://mojang.com/notch/logichex/) by [Notch](https://moj
 
 Here's an AND gate:
 
-[!Example of an AND gate.](https://raw.githubusercontent.com/anubiann00b/HexLogic/gh-pages/img/and.png)
+![Example of an AND gate.](img/and.png)
