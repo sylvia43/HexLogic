@@ -5,4 +5,4 @@ A clone of [LogicHex](https://mojang.com/notch/logichex/) by [Notch](https://moj
 
 Here's an AND gate:
 
-[insert image]
+[!Example of an AND gate.](img/and.png)
