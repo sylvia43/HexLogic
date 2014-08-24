@@ -76,7 +76,7 @@ function updateHex(hex) {
 }
 
 function getNeighbor(hex, d) {
-  var n = neighbors[(hex.y&1)][d];
+  var n = neighbors[(hex.x&1)][d];
 
   var nx = hex.x+n[0];
   var ny = hex.y+n[1]
