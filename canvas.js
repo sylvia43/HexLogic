@@ -92,11 +92,7 @@ function drawHex(hex, xp, yp) {
       g.lineTo(xp + size/4, yp - size/4);
       break;
     case 2: // OR
-      g.moveTo(xp - size/4, yp - size/4);
-      g.lineTo(xp + size/4, yp - size/4);
-      g.lineTo(xp + size/4, yp + size/4);
-      g.lineTo(xp - size/4, yp + size/4);
-      g.lineTo(xp - size/4, yp - size/4);
+      g.arc(xp, yp, size/4, 0, 2*Math.PI);
       break;
     case 3: // Power
       g.moveTo(xp - size/4, yp);
