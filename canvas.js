@@ -31,7 +31,7 @@ function repaint() {
   for (var i=-xo; i<map.length-xo; i++) {
     for (var j=-yo; j<map[i+xo].length-yo; j++) {
       updateHex(map[i+xo][j+yo]);
-      drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + j*2*size*Math.sqrt(3)/2 + (i%2==0?Math.sqrt(3)/2*size:0));
+      drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + j*size*Math.sqrt(3) + (i%2==0?Math.sqrt(3)/2*size:0));
     }
   }
 }
@@ -48,10 +48,12 @@ function onClick(e) {
   var xp = e.clientX - pp.x - xpo;
   var yp = e.clientY - pp.y - ypo;
 
-  var hq = 2/3 * xp / size + xo;
-  var hr = (-1/3 * xp + Math.sqrt(3)/3 * -(-xp - (yp - (xp - (xp&1)) / 2))) / size + yo;
+  var hx = 2/3 * xp / size;
+  var hy = Math.sqrt(3)/3 * yp / size;
 
-  var h = map[Math.round(hq)][Math.round(hr)];
+  console.log(hx + " " + hy);
+
+  var h = map[Math.round(hx)][Math.floor(hy)];
   h.type++;
   if (h.type>3)
     h.type=0;
