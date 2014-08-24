@@ -1,11 +1,14 @@
-var map = new Array(12);
+var xs = 6;
+var ys = 6;
+
+var map = new Array(xs);
 
 for (var i=0; i<map.length; i++) {
-  map[i] = new Array(12);
+  map[i] = new Array(ys);
 };
 
-for (var i=0; i<12; i++) {
-  for (var j=0; j<12; j++) {
+for (var i=0; i<xs; i++) {
+  for (var j=0; j<ys; j++) {
     map[i][j] = { state:0, type: 0};
   }
 };
