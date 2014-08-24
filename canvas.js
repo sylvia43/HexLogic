@@ -34,20 +34,20 @@ function repaint() {
     }
   }
 }
-
+  
 function onClick(e) {
   var pp = getPosition(e.currentTarget);
   var xp = e.clientX - pp.x - xpo;
   var yp = e.clientY - pp.y - ypo;
 
-  //-xp - (yp - (xp - (xp&1)) / 2)
-
   var hq = 2/3 * xp / size + xo;
   var hr = (-1/3 * xp + Math.sqrt(3)/3 * -(-xp - (yp - (xp - (xp&1)) / 2))) / size + yo;
 
-  console.log(hq + " " + hr);
+  var h = map[Math.round(hq)][Math.round(hr)];
+  h.state++;
+  if (h.state>3)
+    h.state=0;
 
-  map[Math.round(hq)][Math.round(hr)].state = 1;
   repaint();
 }
 
@@ -63,10 +63,25 @@ function drawHex(hex, xp, yp) {
     else
       g.lineTo(x,y);
   }
-  if (hex.state == 0)
-    g.stroke();
-  else
-    g.fill();
+  g.stroke();
+  switch(hex.state) {
+    case 0:
+      g.fillStyle='#FFFFFF';
+      break;
+    case 1:
+      g.fillStyle='#FF0000';
+      break;
+    case 2:
+      g.fillStyle='#00FF00';
+      break;
+    case 3:
+      g.fillStyle='#0000FF';
+      break;
+    default:
+      g.fillStyle='#000000';
+      break;
+  }
+  g.fill();
 }
 
 function getPosition(e) {
