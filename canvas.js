@@ -6,8 +6,8 @@ var neighbors = [
    [-1, -1], [-1,  0], [ 0, +1] ]
 ];
 
-var xs = 18;
-var ys = 10;
+var xs = 20;
+var ys = 12;
 
 var map = new Array(xs);
 
@@ -21,7 +21,7 @@ for (i=0; i<xs; i++) {
   }
 }
 
-var size = 30;
+var size = 25;
 
 var xo = 0;
 var yo = 0;
