@@ -7,6 +7,8 @@ var map = [
   [{state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}, {state:0, type:0}],
 ];
 
+var size = 10;
+
 canvas = document.getElementById('canvas')
 canvas.addEventListener('click', onClick, false);
 var g = canvas.getContext('2d');
@@ -19,19 +21,23 @@ function onClick(e) {
 
   console.log(xp + " " + yp);
 
-  drawHex(xp, yp, 10);
+  for (var i=0; i<map.length; i++) {
+    for (var j=0; j<map[i].length; j++) {
+      drawHex(map[i][j], i*size*3/2, (i+j*2)*size*Math.sqrt(3)/2);
+    }
+  }
 }
 
-function drawHex(xp, yp, size) {
+function drawHex(hex, xp, yp) {
   var i;
   for (i=0; i<=6; i++) {
     var angle = 2 * Math.PI / 6 * i;
-    x_i = xp + size * Math.cos(angle);
-    y_i = yp + size * Math.sin(angle); 
+    x = xp + size * Math.cos(angle);
+    y = yp + size * Math.sin(angle); 
     if (i == 0)
-      g.moveTo(x_i, y_i);
+      g.moveTo(x,y);
     else
-      g.lineTo(x_i, y_i);
+      g.lineTo(x,y);
   }
   g.stroke();
 }
