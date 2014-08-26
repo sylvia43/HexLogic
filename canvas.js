@@ -32,7 +32,6 @@ var ypo = size;
 canvas = document.getElementById('canvas')
 canvas.addEventListener('click', onClick, false);
 var g = canvas.getContext('2d');
-g.lineWidth = 0.5;
 g.fillStyle='#FF00A5';
 repaint();
 
