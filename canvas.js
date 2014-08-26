@@ -6,8 +6,8 @@ var neighbors = [
    [-1, -1], [-1,  0], [ 0, +1] ]
 ];
 
-var xs = 20;
-var ys = 12;
+var xs = 34;
+var ys = 20;
 
 var map = new Array(xs);
 
@@ -21,7 +21,7 @@ for (i=0; i<xs; i++) {
   }
 }
 
-var size = 25;
+var size = 15;
 
 var xo = 0;
 var yo = 0;
@@ -32,6 +32,7 @@ var ypo = size;
 canvas = document.getElementById('canvas')
 canvas.addEventListener('click', onClick, false);
 var g = canvas.getContext('2d');
+g.lineWidth = 0.5;
 g.fillStyle='#FF00A5';
 repaint();
 
