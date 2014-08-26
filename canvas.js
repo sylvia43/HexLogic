@@ -6,22 +6,15 @@ var neighbors = [
    [-1, -1], [-1,  0], [ 0, +1] ]
 ];
 
-var xs = 34;
-var ys = 20;
-
-var map = new Array(xs);
-
-for (var i=0; i<map.length; i++) {
-  map[i] = new Array(ys);
-}
-
-for (i=0; i<xs; i++) {
-  for (var j=0; j<ys; j++) {
-    map[i][j] = { state:0, type:0, x:i, y:j, repaint:true};
-  }
-}
-
 var size = 15;
+var map;
+
+var canvas = document.getElementById('canvas')
+
+var xs;
+var ys
+
+configureMap();
 
 var xo = 0;
 var yo = 0;
@@ -29,10 +22,9 @@ var yo = 0;
 var xpo = size;
 var ypo = size;
 
-canvas = document.getElementById('canvas')
 canvas.addEventListener('click', onClick, false);
 var g = canvas.getContext('2d');
-repaint();
+drawAll();
 
 window.setInterval(function() {
   for (var i=0; i<map.length; i++) {
@@ -42,6 +34,46 @@ window.setInterval(function() {
   }
   repaint();
 }, 100);
+
+function configureMap() {
+  var ox = xs;
+  var oy = ys;
+
+  xs = Math.floor(canvas.width/size/3*2);
+  ys = Math.floor(canvas.height/size/Math.sqrt(3))-1;
+
+  if (map === undefined) {
+    map = new Array(xs);
+
+    for (var i=0; i<map.length; i++) {
+      map[i] = new Array(ys);
+    }
+
+    for (i=0; i<xs; i++) {
+      for (var j=0; j<ys; j++) {
+        map[i][j] = { state:0, type:0, x:i, y:j, repaint:false};
+      }
+    }
+  } else {
+    for (var i=ox; i<xs; i++) {
+      map.push(new Array(ys));
+    }
+
+    for (i=ox; i<xs; i++) {
+      for (var j=oy; j<ys; j++) {
+        map[i].push({ state:0, type:0, x:i, y:j, repaint:false});
+      }
+    }
+  }
+}
+
+function drawAll() {
+  for (var i=-xo; i<map.length-xo; i++) {
+    for (var j=-yo; j<map[i+xo].length-yo; j++) {
+      drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + j*size*Math.sqrt(3) + (i%2==0?Math.sqrt(3)/2*size:0));
+    }
+  }
+}
 
 function repaint() {
   for (var i=-xo; i<map.length-xo; i++) {
