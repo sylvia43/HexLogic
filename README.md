@@ -5,18 +5,22 @@ A clone of [LogicHex](https://mojang.com/notch/logichex/) by [Notch](https://moj
 
 Here are some examples of what you can make:
 
-Switch Direction:
+Switch direction:
 
-![Example of switching direction.](img/dirswitch.png)
+![Switching direction.](img/dirswitch.png)
 
-AND Gate:
+AND gate:
 
-![Example of an AND gate.](img/and.png)
+![AND gate.](img/and.png)
 
 Multiplexer:
 
-![Example of a Multiplexer.](img/multiplexer.png)
+![Multiplexer.](img/multiplexer.png)
 
 Adder:
 
 ![Example of an Adder.](img/adder.png)
+
+Adder that's more chainable:
+
+![Chainable Adder](img/adder_chain.png)
