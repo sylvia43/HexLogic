@@ -17,7 +17,7 @@ for (var i=0; i<map.length; i++) {
 
 for (i=0; i<xs; i++) {
   for (var j=0; j<ys; j++) {
-    map[i][j] = { state:0, type:0, x:i, y:j};
+    map[i][j] = { state:0, type:0, x:i, y:j, repaint:true};
   }
 }
 
@@ -47,12 +47,16 @@ window.setInterval(function() {
 function repaint() {
   for (var i=-xo; i<map.length-xo; i++) {
     for (var j=-yo; j<map[i+xo].length-yo; j++) {
-      drawHex(map[i+xo][j+yo], xpo + i*size*3/2, ypo + j*size*Math.sqrt(3) + (i%2==0?Math.sqrt(3)/2*size:0));
+      var hex = map[i+xo][j+yo];
+      if (hex.repaint)
+        drawHex(hex, xpo + i*size*3/2, ypo + j*size*Math.sqrt(3) + (i%2==0?Math.sqrt(3)/2*size:0));
+      hex.repaint = false;
     }
   }
 }
 
 function updateHex(hex) {
+  var preState = hex.state;
   switch(hex.type) {
     case 3:
       hex.state = 1;
@@ -73,6 +77,8 @@ function updateHex(hex) {
         hex.state = 0;
       break;
   }
+  if (hex.state != preState)
+    hex.repaint = true;
 }
 
 function getNeighbor(hex, d) {
@@ -101,6 +107,8 @@ function onClick(e) {
   h.type++;
   if (h.type>3)
     h.type=0;
+
+  h.repaint = true;
 
   repaint();
 }
