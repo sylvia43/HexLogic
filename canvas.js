@@ -32,6 +32,11 @@ window.setInterval(function() {
       updateHex(map[i][j]);
     }
   }
+  for (var i=0; i<map.length; i++) {
+    for (var j=0; j<map[i].length; j++) {
+      map[i][j].oldstate = map[i][j].state;
+    }
+  }
   repaint();
 }, 100);
 
@@ -51,7 +56,7 @@ function configureMap() {
 
     for (i=0; i<xs; i++) {
       for (var j=0; j<ys; j++) {
-        map[i][j] = { state:0, type:0, x:i, y:j, repaint:false};
+        map[i][j] = { state:0, type:0, x:i, y:j, repaint:false, oldstate:0};
       }
     }
   } else {
@@ -96,13 +101,13 @@ function updateHex(hex) {
       hex.state = 0;
       break;
     case 2:
-      if (getNeighbor(hex, 1).state == 1 || getNeighbor(hex, 3).state == 1 || getNeighbor(hex, 5).state == 1)
+      if (getNeighbor(hex, 1).oldstate == 1 || getNeighbor(hex, 3).oldstate == 1 || getNeighbor(hex, 5).oldstate == 1)
         hex.state = 1;
       else
         hex.state = 0;
       break;
     case 1:
-      if ((getNeighbor(hex, 1).state + getNeighbor(hex, 3).state + getNeighbor(hex, 5).state) % 2 == 1)
+      if ((getNeighbor(hex, 1).oldstate + getNeighbor(hex, 3).oldstate + getNeighbor(hex, 5).oldstate) % 2 == 1)
         hex.state = 1;
       else
         hex.state = 0;
