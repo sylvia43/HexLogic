@@ -7,28 +7,32 @@ Here are some examples of what you can make:
 
 Switch direction:
 
-![Switching direction.](img/dirswitch.png)
+![Switching direction](img/dirswitch.png)
 
 AND gate:
 
-![AND gate.](img/and.png)
+![AND gate](img/and.png)
 
 Multiplexer:
 
-![Multiplexer.](img/multiplexer.png)
+![Multiplexer](img/multiplexer.png)
 
 Adder:
 
-![Example of an Adder.](img/adder.png)
+![Example of an adder](img/adder.png)
 
 Adder that's more chainable:
 
-![Chainable Adder](img/adder_chain.png)
+![Chainable adder](img/adder_chain.png)
 
-SR-NOR Latch:
+SR-NOR latch:
 
 ![SR-NOR Latch](img/srnor.png)
 
-Better SR-NOR Latch:
+Better SR-NOR latch:
 
-![Better SR-NOR Latch](img/srnor_small.png)
+![Better SR-NOR latch](img/srnor_small.png)
+
+Much better Adder:
+
+![Much better adder](img/adder_plus_plus.png)
