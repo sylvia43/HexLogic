@@ -24,3 +24,7 @@ Adder:
 Adder that's more chainable:
 
 ![Chainable Adder](img/adder_chain.png)
+
+SR-NOR Latch:
+
+![SR-NOR Latch](img/srnor.png)
