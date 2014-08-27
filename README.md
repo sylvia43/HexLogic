@@ -28,3 +28,7 @@ Adder that's more chainable:
 SR-NOR Latch:
 
 ![SR-NOR Latch](img/srnor.png)
+
+Better SR-NOR Latch:
+
+![Better SR-NOR Latch](img/srnor_small.png)
