@@ -3,6 +3,15 @@ HexLogic
 
 A clone of [LogicHex](https://mojang.com/notch/logichex/) by [Notch](https://mojang.com/notch/) (yes, the guy who made Minecraft) using Javascript canvas. Try it out: http://anubiann00b.github.io/HexLogic/
 
+Cell types:
+  - blank - Always off
+  - `X` - XOR
+  - `O` - OR
+  - `+` - Always on
+
+Cell outputs are straight up, and diagonally down (both left and right).  
+Cell inputs are straight down, and diagonally up (both left and right).
+
 Here are some examples of what you can make:
 
 Switch direction:
